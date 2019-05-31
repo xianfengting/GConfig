@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// This project is licensed under 996 License.
 
 #ifndef __HEADER_FILE_PROTECTION__CONSTS
 #define __HEADER_FILE_PROTECTION__CONSTS

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// This project is licensed under 996 License.
 
 #include <stdio.h>
 #include <stdlib.h>
