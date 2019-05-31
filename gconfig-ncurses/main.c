@@ -1,5 +1,10 @@
 
 #include <ncurses.h>
 
-int main()
-{}
+#include "screen.h"
+
+int main(int argc, const char *argv[])
+{
+    screen_init();
+    screen_destory();
+}
