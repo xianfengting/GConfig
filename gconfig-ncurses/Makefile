@@ -18,19 +18,22 @@ ifndef OUT_DIR_NAME
     OUT_DIR_NAME = out
 endif
 
+include ./parser/Makefile
+
 object_files = main.o screen.o
 
 all : recompile
 PHONY := all
 
-c_compile : $(object_files)
+c-compile : $(object_files)
+	make c-compile-parser
 	cd ./$(OUT_DIR_NAME) && $(CC) -o $(PROGRAM_NAME) $(object_files) $(CC_ARGS)
-PHONY += c_compile
+PHONY += c-compile
 
 $(object_files) : %.o : %.c
 	$(CC) -c $(CFLAGS) $< -o $(OUT_DIR_NAME)/$@ $(CC_ARGS)
 
-compile : c_compile
+compile : c-compile
 PHONY += compile
 
 clean : 
