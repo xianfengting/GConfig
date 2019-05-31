@@ -25,7 +25,7 @@ c_compile : $(object_files)
 	cd ./$(OUT_DIR_NAME) && $(CC) -o $(PROGRAM_NAME) $(object_files) $(CC_ARGS)
 PHONY += c_compile
 
-$(object_files) : %.o : %.cpp
+$(object_files) : %.o : %.c
 	$(CC) -c $(CFLAGS) $< -o $(OUT_DIR_NAME)/$@ $(CC_ARGS)
 
 compile : c_compile
