@@ -65,6 +65,7 @@ PHONY += compile
 clean :
 	-cd ./$(OUT_DIR_NAME) && rm $(PROGRAM_NAME)
 	-cd ./$(OUT_DIR_NAME) && rm $(object_files)
+	-rm -r ./$(OUT_DIR_NAME)
 PHONY += clean
 
 recompile : clean compile
