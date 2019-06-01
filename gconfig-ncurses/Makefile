@@ -30,7 +30,7 @@ export object_files
 # 	make -C $(1)
 # endef
 
-include ./parser/Makefile
+include ./code-parser/Makefile
 object_files += main.o screen.o
 
 PHONY :=

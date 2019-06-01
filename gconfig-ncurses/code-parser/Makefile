@@ -9,6 +9,6 @@
 # 	$(call find-object-files-callable)
 # PHONY += find-object-files
 
-out_sub_dirs += parser/
+out_sub_dirs += code-parser/
 
-object_files += parser/parser.o
+object_files += code-parser/parser.o
