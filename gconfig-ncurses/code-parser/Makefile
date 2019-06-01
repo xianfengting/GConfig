@@ -11,4 +11,4 @@
 
 out_sub_dirs += code-parser/
 
-object_files += code-parser/parser.o
+object_files += code-parser/parser.o code-parser/parser-util.o
