@@ -6,6 +6,8 @@
 
 #include <stdlib.h>
 
+#define xmalloc_type(type, size) xmalloc(sizeof(type) * size)
+
 extern void *xmalloc(size_t size);
 extern void xfree(void *mem);
 

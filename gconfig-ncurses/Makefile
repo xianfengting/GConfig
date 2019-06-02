@@ -33,7 +33,7 @@ export object_files
 PHONY :=
 
 include ./code-parser/Makefile
-object_files += entry.o screen.o util.o
+object_files += entry.o screen.o util.o main.o file-io.o
 
 all : recompile
 PHONY += all

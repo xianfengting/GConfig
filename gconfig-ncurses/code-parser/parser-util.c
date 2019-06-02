@@ -3,7 +3,7 @@
 
 #include "parser-util.h"
 
-inline BOOL is_null_char(char c)
+inline bool_t is_null_char(char c)
 {
     switch (c)
     {
@@ -11,8 +11,8 @@ inline BOOL is_null_char(char c)
     case ' ':
     case '\t':
     case '\n':
-        return TRUE;
+        return true;
     default:
-        return FALSE;
+        return false;
     }
 }

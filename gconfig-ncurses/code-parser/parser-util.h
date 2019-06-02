@@ -6,6 +6,6 @@
 
 #include "../typedefs.h"
 
-extern inline BOOL is_null_char(char c);
+extern inline bool_t is_null_char(char c);
 
 #endif
