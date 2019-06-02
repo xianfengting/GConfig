@@ -7,5 +7,6 @@
 #include <stdlib.h>
 
 extern void *xmalloc(size_t size);
+extern void xfree(void *mem);
 
 #endif

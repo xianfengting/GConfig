@@ -15,3 +15,10 @@ void *xmalloc(size_t size)
     fprintf(stderr, "Error: out of memory.\n");
     exit(EXIT_CODE__OUT_OF_MEMORY);
 }
+
+void xfree(void *mem)
+{
+    if (!mem)
+        return;
+    free(mem);
+}
