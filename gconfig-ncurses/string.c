@@ -20,13 +20,10 @@ struct string *_string_new(int len)
         return NULL;
 
     struct string *str = xmalloc_type(struct string, 1);
-    if (len > 0)
+    if (len > 2)
         string_allocate_buffer(str, len);
     else
-    {
-        str->buffer = NULL;
-        str->bufferSize = 0;
-    }
+        string_allocate_buffer(str, 2);
     return str;
 }
 
@@ -34,10 +31,8 @@ extern void string_add_char_back(struct string *str, char c)
 {
     if (!str)
         return;
-    
-    if (str->buffer == NULL)
-        string_allocate_buffer(str, 2);
-    if (str->bufferSize == strlen(str->buffer))
+
+    if (str->bufferSize == strlen(str->buffer) + 1)
     {
         int newBufSize = str->bufferSize + 1;
         char *newBuf = xmalloc_type(char, newBufSize);
@@ -50,6 +45,17 @@ extern void string_add_char_back(struct string *str, char c)
     {
         str->buffer[strlen(str->buffer)] = c;
     }
+}
+
+extern void string_add_string_back(struct string *str, const_c_string_t backStr)
+{
+    for (int i = 0; i < strlen(backStr); i++)
+        string_add_char_back(str, backStr[i]);
+}
+
+extern const_c_string_t string_get_c_string(struct string *str)
+{
+    return str->buffer;
 }
 
 void string_delete(struct string *str)
