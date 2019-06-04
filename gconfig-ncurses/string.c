@@ -27,7 +27,7 @@ struct string *_string_new(int len)
     return str;
 }
 
-extern void string_add_char_back(struct string *str, char c)
+void string_add_char_back(struct string *str, char c)
 {
     if (!str)
         return;
@@ -47,13 +47,13 @@ extern void string_add_char_back(struct string *str, char c)
     }
 }
 
-extern void string_add_string_back(struct string *str, const_c_string_t backStr)
+void string_add_string_back(struct string *str, const_c_string_t backStr)
 {
     for (int i = 0; i < strlen(backStr); i++)
         string_add_char_back(str, backStr[i]);
 }
 
-extern const_c_string_t string_get_c_string(struct string *str)
+const_c_string_t string_get_c_string(struct string *str)
 {
     return str->buffer;
 }
