@@ -40,7 +40,11 @@ int main(int argc, const char *argv[])
     }
 
     signal(SIGINT, signal_handler);
-    gconfig_parse(argv[1]);
+    if (gconfig_parse(argv[1]) == -1)
+    {
+        fprintf(stderr, "The file \"%s\" does not exist; please have a check and run GConfig again.\n", argv[1]);
+        return EXIT_CODE__ILLEGAL_FILE;
+    }
     // screen_init();
     // screen_destory();
 }

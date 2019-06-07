@@ -8,10 +8,14 @@
 #include "util.h"
 #include "main.h"
 
-void gconfig_parse(const char *confFilename)
+// NOTE: This function is only called from entry.c
+int gconfig_parse(const char *confFilename)
 {
     file_size_t fs = get_file_size(confFilename);
+    if (fs == -1)
+        return -1;
     char *fBuf = xmalloc_type(char, fs);
     read_file(confFilename, fBuf);
     xfree(fBuf);
+    return 0;
 }

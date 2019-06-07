@@ -4,6 +4,7 @@
 #ifndef __HEADER_FILE_PROTECTION__MAIN
 #define __HEADER_FILE_PROTECTION__MAIN
 
-extern void gconfig_parse(const char *confFilename);
+// NOTE: This function is only called from entry.c
+extern int gconfig_parse(const char *confFilename);
 
 #endif
