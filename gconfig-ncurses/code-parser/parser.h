@@ -4,6 +4,6 @@
 #ifndef __HEADER_FILE_PROTECTION__PARSER
 #define __HEADER_FILE_PROTECTION__PARSER
 
-extern void parse_gconfig_code(const char *code);
+extern void parse_gconfig_code(const char *code, const char *fileFolder)
 
 #endif
