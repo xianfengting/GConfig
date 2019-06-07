@@ -7,4 +7,7 @@
 #define NULL_POINTER_RETURN(name)\
     if (!name) return;
 
+#define NULL_POINTER_RETURN_VALUE(name, val)\
+    if (!name) return val;
+
 #endif
