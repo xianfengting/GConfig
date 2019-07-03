@@ -24,7 +24,7 @@ Throwable::~Throwable()
 
 const_str_t Throwable::GetMessage() const
 {
-    return m_message->data();
+    return m_message->c_str();
 }
 
 void Throwable::SetMessage(const string &message)
@@ -45,6 +45,6 @@ void Throwable::SetCause(Throwable *cause)
 
 void Throwable::InitFields(const string &message, Throwable *cause)
 {
-    m_message = new string(message.data());
+    m_message = new string(message.c_str());
     m_cause = cause;
 }
