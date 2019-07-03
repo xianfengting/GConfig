@@ -11,3 +11,6 @@ Exception::Exception(const Throwable &other) : Throwable(other)
 Exception::Exception(const std::string &message, Throwable *cause/* = nullptr*/)
     : Throwable(message, cause)
 {}
+
+Exception::~Exception()
+{}
