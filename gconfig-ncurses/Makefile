@@ -37,6 +37,15 @@ object_files += main.o
 all : recompile
 PHONY += all
 
+build-and-run : all run
+PHONY += build-and-run
+
+run :
+	@echo "----------Starting running----------"
+	@./out/$(PROGRAM_NAME)
+	@echo "----------Finishing running----------"
+PHONY += run
+
 # find-object-files :
 # 	$(call call-sub-makefile-find-object-files, parser/)
 # 	object_files += main.o screen.o
