@@ -31,8 +31,10 @@ export object_files
 
 PHONY :=
 
-#include ./code-parser/Makefile
-object_files += main.o
+# Include other Makefiles here.
+include ./code-parser/Makefile
+
+object_files += main.o object.o
 
 all : recompile
 PHONY += all
