@@ -34,7 +34,7 @@ PHONY :=
 # Include other Makefiles here.
 include ./code-parser/Makefile
 
-object_files += main.o object.o
+object_files += main.o object.o throwable.o exception.o
 
 all : recompile
 PHONY += all
