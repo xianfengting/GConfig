@@ -19,7 +19,7 @@
           "-w" // 或者 --print-directory
         ],
         "options": {
-          "cwd": "${workspaceFolder}/gconfig-ncurses"
+          "cwd": "${workspaceFolder}"
         }
       }
     ],

@@ -1,10 +1,12 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# This project is licensed under the Anti-996 License.
 
 CC = cc
 CFLAGS = 
 ifeq ($(DEBUG),1)
-    CC_ARGS := -lpthread -lncurses -g -D _DEBUG=1
+    CC_ARGS = -lpthread -lncurses -g -D _DEBUG=1
 else
-    CC_ARGS := -lpthread -lncurses
+    CC_ARGS = -lpthread -lncurses
 endif
 #ifeq ($(ENABLE_SECOND_LEVEL_CODE),1)
 #    CC_ARGS += -D _ENABLE_SECOND_LEVEL_CODE=1
@@ -15,25 +17,56 @@ endif
 ifndef OUT_DIR_NAME
     OUT_DIR_NAME = out
 endif
+object_files :=
+out_sub_dirs :=
+export CC
+export CFLAGS
+export CC_ARGS
+export PROGRAM_NAME
+export OUT_DIR_NAME
+export object_files
 
-object_files = main.o screen.o
+# define call-sub-makefile-find-object-files
+# 	make -C $(1)
+# endef
+
+PHONY :=
+
+include ./code-parser/Makefile
+object_files += entry.o screen.o util.o main.o file-io.o string.o
 
 all : recompile
-PHONY := all
+PHONY += all
 
-c_compile : $(object_files)
+# find-object-files :
+# 	$(call call-sub-makefile-find-object-files, parser/)
+# 	object_files += main.o screen.o
+# 	found_object_files = 1
+# PHONY += find-object-files
+
+before-c-compile :
+PHONY += before-c-compile
+
+make-out-dirs :
+	-mkdir ./$(OUT_DIR_NAME)
+	-cd ./$(OUT_DIR_NAME) && mkdir $(out_sub_dirs)
+PHONY += make-out-dirs
+
+c-compile : $(object_files)
 	cd ./$(OUT_DIR_NAME) && $(CC) -o $(PROGRAM_NAME) $(object_files) $(CC_ARGS)
-PHONY += c_compile
+PHONY += c-compile
 
 $(object_files) : %.o : %.c
 	$(CC) -c $(CFLAGS) $< -o $(OUT_DIR_NAME)/$@ $(CC_ARGS)
 
-compile : c_compile
+compile : make-out-dirs before-c-compile c-compile
 PHONY += compile
 
-clean : 
+clean :
 	-cd ./$(OUT_DIR_NAME) && rm $(PROGRAM_NAME)
 	-cd ./$(OUT_DIR_NAME) && rm $(object_files)
+	-rm -r ./$(OUT_DIR_NAME)
+PHONY += clean
 
 recompile : clean compile
 PHONY += recompile

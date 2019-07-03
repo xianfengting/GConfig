@@ -8,12 +8,12 @@
             "name": "build and debug gconfig-ncurses",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/gconfig-ncurses/out/program",
+            "program": "${workspaceFolder}/out/program",
             "args": [
-                "debug"
+                "./samples/test1/GConfig"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/gconfig-ncurses/out",
+            "cwd": "${workspaceFolder}/..",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
