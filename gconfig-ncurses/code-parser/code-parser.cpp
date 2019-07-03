@@ -9,25 +9,42 @@
 
 using namespace std;
 
-CodeParser::CodeParser()
+// --------------------------------------------------
+// class CodeFile
+
+CodeFile::CodeFile() : m_filePath(nullptr), m_fileContent(nullptr)
 {}
 
-CodeParser::~CodeParser()
-{}
-
-void CodeParser::AddFile(const_str_t filePath)
+CodeFile::CodeFile(const string &filePath) : m_fileContent(nullptr)
 {
-    AddFile(string(filePath));
+    AttachFilePath(filePath);
 }
 
-void CodeParser::AddFile(const string &filePath)
+CodeFile::~CodeFile()
 {
+    if (m_filePath) delete m_filePath;
+    if (m_fileContent) delete m_fileContent;
+}
+
+void CodeFile::AttachFilePath(const string &filePath)
+{
+    if (m_filePath)
+        throw Exception("Already attached.");
+    m_filePath = new string(filePath.c_str());
+}
+
+void CodeFile::InitFileContent()
+{
+    if (m_fileContent)
+        throw Exception("Already initialized.");
+    if (!m_filePath)
+        throw Exception("m_filePath hasn't attached yet.");
     ifstream file;
-    file.open(filePath);
+    file.open(*m_filePath);
     if (!file.is_open()) {
         string msg;
         msg += "Can't open the file \"";
-        msg += filePath;
+        msg += m_filePath->c_str();
         msg += "\".";
         throw Exception(msg);
     }
@@ -40,11 +57,38 @@ void CodeParser::AddFile(const string &filePath)
         sprintf(str, "%c", c);
         content.append(str);
     }
-    AddStringContent(content);
 }
 
-void CodeParser::AddStringContent(const_str_t strContent)
-{}
+// --------------------------------------------------
+// class CodeParser
 
-void CodeParser::AddStringContent(const string &strContent)
-{}
+CodeParser::CodeParser()
+{
+    m_fileList = new list<CodeFile *>;
+}
+
+CodeParser::~CodeParser()
+{
+    delete m_fileList;
+}
+
+void CodeParser::AddFile(const_str_t filePath)
+{
+    AddFile(string(filePath));
+}
+
+void CodeParser::AddFile(const string &filePath)
+{
+    // AddStringContent(filePath.c_str(), content);
+    CodeFile *file = new CodeFile(filePath);
+    file->InitFileContent();
+    m_fileList->push_back(file);
+}
+
+// void CodeParser::AddStringContent(const_str_t filePath, const_str_t strContent)
+// {
+//     AddStringContent(filePath, string(strContent));
+// }
+
+// void CodeParser::AddStringContent(const_str_t filePath, const string &strContent)
+// {}
