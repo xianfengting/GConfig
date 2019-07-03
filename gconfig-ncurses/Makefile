@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-# This project is licensed under the Anti-996 License.
 
-CC = cc
+CC = g++
 CFLAGS = 
 ifeq ($(DEBUG),1)
     CC_ARGS = -lpthread -lncurses -g -D _DEBUG=1
@@ -56,7 +55,7 @@ c-compile : $(object_files)
 	cd ./$(OUT_DIR_NAME) && $(CC) -o $(PROGRAM_NAME) $(object_files) $(CC_ARGS)
 PHONY += c-compile
 
-$(object_files) : %.o : %.c
+$(object_files) : %.o : %.cpp
 	$(CC) -c $(CFLAGS) $< -o $(OUT_DIR_NAME)/$@ $(CC_ARGS)
 
 compile : make-out-dirs before-c-compile c-compile
