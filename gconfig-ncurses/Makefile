@@ -3,9 +3,9 @@
 CC = g++
 CFLAGS = 
 ifeq ($(DEBUG),1)
-    CC_ARGS = -lpthread -lncurses -g -D _DEBUG=1
+    CC_ARGS = -lpthread -lncurses -std=c++11 -g -D _DEBUG=1
 else
-    CC_ARGS = -lpthread -lncurses
+    CC_ARGS = -lpthread -lncurses -std=c++11
 endif
 #ifeq ($(ENABLE_SECOND_LEVEL_CODE),1)
 #    CC_ARGS += -D _ENABLE_SECOND_LEVEL_CODE=1
